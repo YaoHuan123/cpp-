@@ -107,3 +107,20 @@ int main(){
 }
 ```
 
+##### malloc和free不会执行构造和析构函数
+```
+class A{
+public:
+	A(){
+		std::cout<<"A()"<<std::endl;
+	}
+	~A(){
+		std::cout<<"~A()"<<std::endl;
+	}
+};
+int main(){
+	A* pa = (A*)malloc(sizeof(A));
+	free(pa);
+}
+```
+
