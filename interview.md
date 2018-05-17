@@ -137,3 +137,83 @@ int main(){
 2. gdb a.out pid
 
 ##### 13.STL中常用的玩意有 vector（遍历删除的时候要用到返回值）map（红黑树）set(自动排序) queue（push，pop）
+
+##### 14.strcpy包含尾零，strlen不包含尾零！
+```
+class String  
+{  
+public:  
+    String(const char *str=NULL);//普通构造函数  
+    String(const String &str);//拷贝构造函数  
+    String & operator =(const String &str);//赋值函数  
+    ~String();//析构函数  
+protected:  
+private:  
+    char* m_data;//用于保存字符串  
+};  
+  
+//普通构造函数  
+String::String(const char *str)
+{  
+    if (str==NULL)
+    {  
+        m_data=new char[1]; //对空字符串自动申请存放结束标志'\0'的空间  
+        if (m_data==NULL)
+        {//内存是否申请成功  
+          std::cout<<"申请内存失败！"<<std::endl;  
+          exit(1);  
+        }  
+        m_data[0]='\0';  
+    }  
+    else
+    {  
+        int length=strlen(str);  
+        m_data=new char[length+1];  
+        if (m_data==NULL)
+        {//内存是否申请成功  
+            std::cout<<"申请内存失败！"<<std::endl;  
+            exit(1);  
+        }  
+        strcpy(m_data,str);  
+    }  
+}  
+
+//拷贝构造函数  
+String::String(const String &other)
+{ //输入参数为const型  
+    int length=strlen(other.m_data);  
+    m_data=new char[length+1];  
+    if (m_data==NULL)
+    {//内存是否申请成功  
+        std::cout<<"申请内存失败！"<<std::endl;  
+        exit(1);  
+    }  
+    strcpy(m_data,other.m_data);  
+}  
+
+//赋值函数  
+String& String::operator =(const String &other)
+{//输入参数为const型  
+    if (this == &other) //检查自赋值  
+    {  return *this; }
+
+    delete [] m_data;//释放原来的内存资源  
+
+    int length=strlen(other.m_data);     
+    m_data= new char[length+1];  
+    if (m_data==NULL)
+    {//内存是否申请成功  
+        std::cout<<"申请内存失败！"<<std::endl;  
+        exit(1);  
+    }  
+    strcpy(m_data,other.m_data);  
+
+    return *this;//返回本对象的引用  
+}  
+
+//析构函数  
+String::~String()
+{  
+    delete [] m_data;  
+}  
+```
