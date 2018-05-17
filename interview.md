@@ -88,3 +88,22 @@ void test(){
 ```
 
 ##### 7.除了析构函数，所有的虚函数，纯虚的，不是纯虚的，都必须在子类中进行实现，不然编译不过！
+
+##### 8.如果定义了虚函数但是没有实现这个虚函数，将无法定义相应的对象。
+```
+class A{
+public:
+	A(){
+		std::cout<<"A()"<<std::endl;
+	}
+	virtual void display();
+	~A(){
+		std::cout<<"~A()"<<std::endl;
+	}
+};
+int main(){
+	A a;//error!
+	std::cout<<sizeof(A)<<std::endl;
+}
+```
+
