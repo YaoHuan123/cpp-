@@ -135,3 +135,5 @@ int main(){
 ##### 12.调试已经运行的程序（带符号表-g选项的）
 1. gdb | attach pid
 2. gdb a.out pid
+
+##### 13.STL中常用的玩意有 vector（遍历删除的时候要用到返回值）map（红黑树）set(自动排序) queue（push，pop）
