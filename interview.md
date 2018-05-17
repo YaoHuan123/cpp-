@@ -133,5 +133,5 @@ int main(){
 - 互斥是共享资源的互斥
 
 ##### 12.调试已经运行的程序（带符号表-g选项的）
-1.gdb | attach pid
-2.gdb a.out pid
+1. gdb | attach pid
+2. gdb a.out pid
