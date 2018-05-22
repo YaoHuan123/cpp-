@@ -225,3 +225,6 @@ String::~String()
 ##### 为什么要使用 shared_from_this()，而不是直接shared_ptr<>(this);
 - 如果一个对象已经被shared_ptr接管了，想要在对象内部获取shared_ptr就不太可能了。因为shared_ptr<>(this)两次！这样会造成两次泄漏！
 - shared_from_this的实现原理是，通过weak_ptr实现！然后从weak_ptr提升到shared_ptr！
+
+
+- 必须一个对象已经在外部被shared_ptr管理后，shared_from_this()接口才有效！
