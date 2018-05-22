@@ -217,3 +217,8 @@ String::~String()
     delete [] m_data;  
 }  
 ```
+
+
+- RAII
+- 就是我的AutoRelase模板
+- 资源包括文件句柄，socket，数据库连接，锁，数据库连接！
