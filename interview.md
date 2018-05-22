@@ -228,3 +228,28 @@ String::~String()
 
 
 - 必须一个对象已经在外部被shared_ptr管理后，shared_from_this()接口才有效！
+
+
+
+
+##### shared_ptr是重载过==的
+
+```
+#include <iostream>
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+#include <boost/function.hpp>
+#include <boost/enable_shared_from_this.hpp>
+#include <vector>
+#include <boost/thread/mutex.hpp>
+int main(){
+	int* a = new int(100);
+	int* b = new int(100);
+	shared_ptr<int> ap(a);
+	shared_ptr<int> bp(b);
+	shared_ptr<int> cp = bp;
+	if(cp == bp){
+		std::cout<<"=="<<std::endl;
+	}
+}
+```
