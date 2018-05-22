@@ -222,3 +222,6 @@ String::~String()
 - RAII
 - 就是我的AutoRelase模板
 - 资源包括文件句柄，socket，数据库连接，锁，数据库连接！
+##### 为什么要使用 shared_from_this()，而不是直接shared_ptr<>(this);
+- 如果一个对象已经被shared_ptr接管了，想要在对象内部获取shared_ptr就不太可能了。因为shared_ptr<>(this)两次！这样会造成两次泄漏！
+- shared_from_this的实现原理是，通过weak_ptr实现！然后从weak_ptr提升到shared_ptr！
