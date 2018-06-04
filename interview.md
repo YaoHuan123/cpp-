@@ -253,3 +253,61 @@ int main(){
 	}
 }
 ```
+
+
+##### 可以基于const重载
+```
+// const成员函数的重载
+class A{
+public:
+	void display()const{
+		std::cout << "const hello!" << std::endl;
+	}
+
+	void display(){
+		std::cout << "display!" << std::endl;
+	}
+};
+// const对象只能调用const成员函数！
+// 非const对象既可以调用const成员函数，也可以调用非const成员函数，优先调用非const成员函数！
+```
+
+```
+//不能基于参数是否是const进行重载。。。。
+class A{
+public:
+	void display(int a){
+		std::cout << "const hello!" << std::endl;
+	}
+
+	
+	void display(const int a){
+		std::cout << "display!" << std::endl;
+	}
+	
+};
+```
+
+```
+//但是可以基于const引用的参数进行重载！！！
+class A{
+public:
+	void display(int a){
+		std::cout << "const hello!" << std::endl;
+	}
+
+	
+	void display(const int& a){
+		std::cout << "display!" << std::endl;
+	}
+	
+};
+```
+
+
+##### RAII技术，就是我经常写的那个template,用于管理资源的申请和释放工作！
+
+
+##### list和vector的区别？
+- list是双向链表实现的
+- vector是连续的内存块，不是数组，数组是静态的，又不能动态的申请。。。。。。。。。
