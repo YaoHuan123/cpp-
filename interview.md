@@ -316,3 +316,31 @@ public:
 ##### 静态多态和动态多态
 - 静态多态就是模板
 - 动态多态是虚函数
+
+```
+class B{
+public:
+	B(){}
+	~B(){}
+private:
+	int i, j;
+};
+
+class C{
+public:
+	C(){}
+	~C(){}
+	void printC(){
+		std::cout << "call printC() in class C" << std::endl;
+	}
+private:
+	char c1, c2;
+};
+
+void test2(){
+	// 强类型语言的危险！！！
+	B * pb = new B();
+	C * pc = (C*)pb;
+	pc->printC();
+}
+```
